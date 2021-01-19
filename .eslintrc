@@ -1,0 +1,47 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "plugins": ["prettier", "@typescript-eslint/eslint-plugin"],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "prefer-const": "error",
+        "no-var": "error",
+        "comma-dangle": 0,
+        "arrow-parens": 0,
+        "no-multiple-empty-lines": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/no-empty-interface": 0,
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "interface",
+                "format": ["PascalCase"],
+                "custom": {
+                    "regex": "^I[A-Z]",
+                    "match": true
+                }
+            }
+        ]
+    }
+}
