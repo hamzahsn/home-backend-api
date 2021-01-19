@@ -4,7 +4,7 @@
 
 This is a small backend api app which provides landlords a control over their apartments where I used [Fastify](https://www.fastify.io/) for NodeJs with Typescript because it have the highest benchmark against Express, Koa... Well, the name already gives a hint :grin:
 
-If anyone want to test it then you can run `wrk -t12 -c400 -d30s http://127.0.0.1:4000/contracts/abcd/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z` but for me I got the following results:
+If anyone want to test it then you can use `wrk` by installing it into your machine if you are using MacOS: `brew install wrk` or if you are using Linux `sudo apt-get install wrk` and then run `wrk -t12 -c400 -d30s http://127.0.0.1:4000/contracts/abcd/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z` but for me I got the following results:
 
 ```bash
 Running 30s test @ http://127.0.0.1:4000/contracts/abcd/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z
