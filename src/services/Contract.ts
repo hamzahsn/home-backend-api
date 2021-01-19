@@ -1,4 +1,4 @@
-import { IContract } from '../typings/contract'
+import { IContract, IItem } from '../typings/contract'
 import { FastifyRequest, FastifyReply } from 'fastify'
 
 const contracts: IContract | any = {
@@ -49,8 +49,21 @@ export const getContract = (req: FastifyRequest, reply: FastifyReply) => {
     reply.status(200).send(dates)
 }
 
-export const addContract = (_: FastifyRequest, reply: FastifyReply) => {
-    reply.send('ADD CONTRACT')
+export const addContract = (req: FastifyRequest, reply: FastifyReply) => {
+    const newContract = req.body as IItem
+    if (!newContract.id || !newContract.id || !newContract.value) {
+        reply.status(400).send('Contract invalid')
+        return
+    }
+
+    const contractId = contracts.items.find((contract: IItem) => contract.contractId === newContract.contractId)
+    if (contractId) {
+        reply.status(404).send('Contract already exist')
+        return
+    }
+
+    contracts.items.push(newContract)
+    reply.send(newContract)
 }
 
 //TODO
