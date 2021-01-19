@@ -65,7 +65,6 @@ export const addContract = (req: FastifyRequest, reply: FastifyReply) => {
     reply.send(newContract)
 }
 
-//TODO
 export const updateContract = (req: FastifyRequest, reply: FastifyReply) => {
     const { contractId } = req.params as any
     if (!contractId) {
@@ -81,7 +80,12 @@ export const updateContract = (req: FastifyRequest, reply: FastifyReply) => {
     reply.status(200).send(req.body)
 }
 
-//TODO
-export const deleteContract = (_: FastifyRequest, reply: FastifyReply) => {
-    reply.send('ADD CONTRACT')
+export const deleteContract = (req: FastifyRequest, reply: FastifyReply) => {
+    const { contractId } = req.params as any
+    if (!contractId) {
+        reply.status(404).send('Empty contract ID')
+        return
+    }
+    contracts.items = contracts.items.filter((contract: IItem) => contract.id !== parseInt(contractId))
+    reply.status(200).send(contractId)
 }
