@@ -10,7 +10,11 @@
         "watch:server": "nodemon './dist/index.js' --watch './dist'",
         "build": "tsc -b",
         "lint": "eslint src/**/*.ts",
-        "lint:fix": "npm run lint -- --fix"
+        "lint:fix": "npm run lint -- --fix",
+        "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
+        "test:watch": "jest --watch --detectOpenHandles",
+        "test:coverage": "jest --watchAll --coverage",
+        "test:update": "jest --updateSnapshot"
     },
     "repository": {
         "type": "git",
