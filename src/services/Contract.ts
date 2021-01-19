@@ -1,7 +1,7 @@
 import { IContract, IItem } from '../typings/contract'
 import { FastifyRequest, FastifyReply } from 'fastify'
 
-const contracts: IContract | any = {
+const contracts: IContract = {
     sum: 0,
     items: [
         {
@@ -32,7 +32,6 @@ const contracts: IContract | any = {
 export const getContract = (req: FastifyRequest, reply: FastifyReply) => {
     const { contractId } = req.params as any
     const { startDate, endDate } = req.query as any
-    const payments = [...contracts.items]
     if (!contractId && !startDate && !endDate) {
         reply.status(400).send('Invalid Input fields')
         return
@@ -40,7 +39,7 @@ export const getContract = (req: FastifyRequest, reply: FastifyReply) => {
     const dates = []
     const start = new Date(startDate).getMonth()
     const end = new Date(endDate).getMonth()
-    for (const contract of payments) {
+    for (const contract of contracts.items) {
         const month = new Date(contract.time).getMonth()
         if (month >= start && month <= end) {
             dates.push(contract)
@@ -56,7 +55,7 @@ export const addContract = (req: FastifyRequest, reply: FastifyReply) => {
         return
     }
 
-    const contractId = contracts.items.find((contract: IItem) => contract.contractId === newContract.contractId)
+    const contractId = contracts.items.find((contract: IItem) => contract.id === newContract.id)
     if (contractId) {
         reply.status(404).send('Contract already exist')
         return
@@ -67,8 +66,19 @@ export const addContract = (req: FastifyRequest, reply: FastifyReply) => {
 }
 
 //TODO
-export const updateContract = (_: FastifyRequest, reply: FastifyReply) => {
-    reply.send('ADD CONTRACT')
+export const updateContract = (req: FastifyRequest, reply: FastifyReply) => {
+    const { contractId } = req.params as any
+    if (!contractId) {
+        reply.status(404).send('Empty contract ID')
+        return
+    }
+
+    const foundContract = contracts.items.findIndex((contract: IItem) => contract.id === parseInt(contractId))
+    if (foundContract) {
+        contracts.items[foundContract] = req.body
+        console.log('"\x1b[34m', 'found', foundContract)
+    }
+    reply.status(200).send(req.body)
 }
 
 //TODO
