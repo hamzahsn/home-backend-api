@@ -124,7 +124,3 @@ Deleting existing contract:
 DELETE: http://127.0.0.1:4000/contracts/1365
 RESPONSE: 1365
 ```
-
-## Additional
-
-II is also possible to execute the APIs on swagger through this link: `http://127.0.0.1:4000/documentation`
