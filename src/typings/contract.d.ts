@@ -1,5 +1,5 @@
 export interface IItem {
-    id: number
+    id: string
     contractId: number
     description: string
     value: number
