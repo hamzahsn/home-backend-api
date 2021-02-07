@@ -1,4 +1,4 @@
-import { FastifyRequest, FastifyReply } from 'fastify'
+import { FastifyReply } from 'fastify'
 import { getContract, addContract, updateContract, deleteContract } from '../services/Contract'
 
 const contractRoutes = [
@@ -8,7 +8,7 @@ const contractRoutes = [
     {
         url: '/contracts/:contractId/payments',
         method: 'get',
-        handler: async (req: FastifyRequest, reply: FastifyReply) => getContract(req, reply)
+        handler: getContract
     },
     /**
      * Add contract
@@ -16,28 +16,28 @@ const contractRoutes = [
     {
         url: '/contracts',
         method: 'post',
-        handler: (req: FastifyRequest, reply: FastifyReply) => addContract(req, reply)
+        handler: addContract
     },
     /**
      * Update contract
      */
     {
-        url: '/contracts/:contractId',
+        url: '/contracts/:paymentId',
         method: 'put',
-        handler: (req: any, reply: FastifyReply) => updateContract(req, reply)
+        handler: updateContract
     },
     /**
      * Delete contract
      */
     {
-        url: '/contracts/:contractId',
+        url: '/contracts/:paymentId',
         method: 'delete',
-        handler: async (req: any, reply: FastifyReply) => deleteContract(req, reply)
+        handler: deleteContract
     },
     {
         url: '/status',
         method: 'get',
-        handler: async (_: any, reply: FastifyReply) => {
+        handler: (_: any, reply: FastifyReply) => {
             return reply.send({ date: new Date(), works: true })
         }
     }
