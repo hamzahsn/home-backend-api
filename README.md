@@ -4,12 +4,12 @@
 
 This is a small backend api app which provides landlords a control over their apartments where I used [Fastify](https://www.fastify.io/) for NodeJs with Typescript because it have the highest benchmark against Express, Koa... Well, the name already gives a hint :grin:
 
-If anyone want to test the benchmark, then you can use `wrk` by installing it into your machine if you are using MacOS: `brew install wrk` or if you are using Linux `sudo apt-get install wrk` and then run `wrk -t12 -c400 -d30s http://127.0.0.1:4000/contracts/abcd/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z`
+If anyone want to test the benchmark, then you can use `wrk` by installing it into your machine if you are using MacOS: `brew install wrk` or if you are using Linux `sudo apt-get install wrk` and then run `wrk -t12 -c400 -d30s http://127.0.0.1:4000/contracts/17689/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z`
 
 For my own machine I got the following results:
 
 ```bash
-Running 30s test @ http://127.0.0.1:4000/contracts/abcd/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z
+Running 30s test @ http://127.0.0.1:4000/contracts/17689/payments?startDate=2016-07-05T00:00:00.00Z&endDate=2016-12-09T00:00:00.00Z
   12 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
     Latency    22.62ms    9.84ms 231.75ms   97.33%
@@ -136,7 +136,7 @@ RESPONSE CODE: 204
 Something that could be improved in this API is to create an Endpoint like the following:
 
 ```bash
-POST: http://127.0.0.1:4000/contracts
+GET: http://127.0.0.1:4000/contracts
 ```
 
 to allow to landlords to see all contracts with every contractID available, in another word, list everything to the specific landlord.
